@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  my_app:
+    build: ./my_app
+    environment:
+      DB_PASSWORD_FILE: /run/secrets/db_password
+      DB_PASSWORD_OTHER_FILE: /run/secrets/db_password_other
+    secrets:
+      - db_password
+      - db_password_other
+secrets:
+  db_password:
+    file: ./db_password.txt
+  db_password_other:
+    environment: DB_PASSWORD_OTHER
